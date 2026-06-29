@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import type { ActiveEffect, GameMode } from '../../types/game'
-import { POWERUP_EMOJI, POWERUP_LABELS, POWERUP_DURATION } from '../../types/game'
+import { POWERUP_LABELS, POWERUP_DURATION } from '../../types/game'
+import { PixelIcon } from '../shared/PixelIcon'
 
 interface HUDProps {
   score: number
@@ -139,7 +140,7 @@ export function HUD({ score, highScore, combo, speed, mode, activeEffects, foodE
             </Combo>
           )}
         </ScoreGroup>
-        <ModeLabel>{modeLabel} | 🍎 {foodEaten}</ModeLabel>
+        <ModeLabel>{modeLabel} | <PixelIcon type="food" size={12} /> {foodEaten}</ModeLabel>
       </TopRow>
 
       <AnimatePresence>
@@ -156,7 +157,7 @@ export function HUD({ score, highScore, combo, speed, mode, activeEffects, foodE
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: 20, opacity: 0 }}
                 >
-                  {POWERUP_EMOJI[effect.type]} {POWERUP_LABELS[effect.type]}
+                  <PixelIcon type={effect.type} size={14} /> {POWERUP_LABELS[effect.type]}
                   <TimerBar $type={effect.type} style={{ width: `${pct}px` }} />
                 </PowerUpBadge>
               )

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import type { SnakeSkin, Direction } from '../../types/game'
 import { moveHead } from '../../utils/snake'
+import { PixelIcon } from '../shared/PixelIcon'
 
 interface SnakePreviewProps {
   skin: SnakeSkin
@@ -37,11 +38,11 @@ const Segment = styled(motion.div)<{ $color: string; $ghost: boolean }>`
   box-shadow: ${({ $color }) => `0 0 4px ${$color}80`};
 `
 
-const FoodDot = styled(motion.div)`
+const FoodContainer = styled(motion.div)`
   position: absolute;
-  border-radius: 50%;
-  background: #ffd93d;
-  box-shadow: 0 0 8px rgba(255, 217, 61, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 function createPreviewSnake(): PreviewSegment[] {
@@ -167,7 +168,7 @@ export function SnakePreview({ skin }: SnakePreviewProps) {
           />
         )
       })}
-      <FoodDot
+      <FoodContainer
         key={`food-${food.x}-${food.y}`}
         animate={{ scale: [1, 1.2, 1] }}
         transition={{ duration: 1, repeat: Infinity }}
@@ -177,7 +178,9 @@ export function SnakePreview({ skin }: SnakePreviewProps) {
           width: `${100 / PREVIEW_SIZE}%`,
           height: `${100 / PREVIEW_SIZE}%`,
         }}
-      />
+      >
+        <PixelIcon type="food" size={20} />
+      </FoodContainer>
     </Container>
   )
 }
