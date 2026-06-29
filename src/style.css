@@ -1,0 +1,66 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #0a0a2e;
+  font-family: 'Press Start 2P', monospace;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translate(-2px, 1px) skewX(-1deg);
+    clip-path: inset(20% 0 30% 0);
+  }
+  40% {
+    transform: translate(2px, -1px) skewX(1deg);
+    clip-path: inset(60% 0 10% 0);
+  }
+  60% {
+    transform: translate(-1px, 2px) skewX(0deg);
+    clip-path: inset(10% 0 60% 0);
+  }
+  80% {
+    transform: translate(1px, -2px) skewX(-0.5deg);
+    clip-path: inset(40% 0 20% 0);
+  }
+  100% {
+    transform: translate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  53% { opacity: 1; }
+}
+
+@keyframes scanline {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+@keyframes textGlitch {
+  0%, 100% { text-shadow: 2px 0 #ff6b6b, -2px 0 #00cec9; }
+  25% { text-shadow: -2px 0 #ff6b6b, 2px 0 #00cec9; }
+  50% { text-shadow: 2px 0 #00cec9, -2px 0 #ff6b6b; }
+  75% { text-shadow: -2px 0 #00cec9, 2px 0 #ff6b6b; }
+}
